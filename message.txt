@@ -1,0 +1,716 @@
+local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
+local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/SaveManager.lua"))()
+local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
+
+local Window = Fluent:CreateWindow({
+    Title = "Serenade Hub ",
+    SubTitle = "by 4xdh",
+    TabWidth = 160,
+    Size = UDim2.fromOffset(580, 460),
+    Acrylic = true, -- The blur may be detectable, setting this to false disables blur entirely
+    Theme = "Dark",
+    MinimizeKey = Enum.KeyCode.LeftControl -- Used when theres no MinimizeKeybind
+})
+
+--Fluent provides Lucide Icons https://lucide.dev/icons/ for the tabs, icons are optional
+local Tabs = {
+    Main = Window:AddTab({ Title = "Main", Icon = "home" }),
+    Solara = Window:AddTab({ Title = "Solara Version", Icon = "flame" }),
+    Settings = Window:AddTab({ Title = "Settings", Icon = "settings" })
+}
+
+local Options = Fluent.Options
+
+
+Tabs.Main:AddButton({
+    Title = "Infinite Jump",
+    Description = "Jump Infinitely",
+    Callback = function()
+        Window:Dialog({
+            Title = "It will NOT wear off unless you rejoin",
+            Content = "You sure you want to enable it ? ",
+            Buttons = {
+                {
+                    Title = "Confirm",
+                    Callback = function()
+                        local infjmp = true
+                        game:GetService("UserInputService").jumpRequest:Connect(function()
+                            if infjmp then
+                                game:GetService("Players").LocalPlayer.Character:FindFirstChildOfClass("Humanoid"):ChangeState("Jumping")
+                            end
+                        end)
+                    end
+                },
+                {
+                    Title = "Cancel",
+                    Callback = function()
+                    
+                    end
+                }
+            }
+        })
+    end
+})
+
+local Slider = Tabs.Main:AddSlider("Slider", {
+    Title = "WalkSpeed Slider",
+    Description = "Walk Way Faster",
+    Default = 16,
+    Min = 0,
+    Max = 500,
+    Rounding = 1,
+    Callback = function(Value)
+        game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Value
+    end
+})
+
+local Slider = Tabs.Main:AddSlider("Slider", {
+    Title = "Jump Power Slider",
+    Description = "Jump Way Higher",
+    Default = 50,
+    Min = 0,
+    Max = 500,
+    Rounding = 1,
+    Callback = function(Value)
+        game.Players.LocalPlayer.Character.Humanoid.JumpPower = Value
+    end
+})
+
+Tabs.Main:AddButton({
+    Title = "Reset Powers",
+    Description = "Resets Jump power and walkspeed to normal",
+    Callback = function()
+        game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 16
+        game.Players.LocalPlayer.Character.Humanoid.JumpPower = 50
+    end
+})
+
+Tabs.Main:AddButton({
+    Title = "Infinite Yield",
+    Description = "Basically Infinite Yield",
+    Callback = function()
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
+    end
+})
+
+Tabs.Main:AddButton({
+    Title = "Universal FE",
+    Description = "",
+    Callback = function()
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/4xdhondiscord/jailb/main/t'))()
+    end
+})
+
+Tabs.Main:AddButton({
+    Title = "MoreUNC",
+    Description = "Adds More Functions ",
+    Callback = function()
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/4xdhondiscord/jailb/main/ds'))()
+    end
+})
+
+Tabs.Main:AddButton({
+    Title = "Hitbox Expander'Use at your own risk'",
+    Description = "",
+    Callback = function()
+        loadstring(game:HttpGet('https://pastebin.com/raw/zr5xBZKr'))()
+    end
+})
+
+Tabs.Main:AddButton({
+    Title = "ClientSided Free Limiteds",
+    Description = "",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/NycVisuals/VisualsWorks/main/FuckYouLookingInHere"))()
+    end
+})
+
+Tabs.Main:AddButton({
+    Title = "Chat SPY",
+    Description = "",
+    Callback = function()
+        loadstring(game:HttpGet("https://pastebin.com/raw/HLqFXf1Q",true))()
+    end
+})
+
+Tabs.Main:AddButton({
+    Title = "Keyboard Script",
+    Description = "For Mobile ",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt",true))()
+    end
+})
+
+Tabs.Solara:AddButton({
+    Title = "Da Hood",
+    Description = "",
+    Callback = function()
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/Actyrn/Scripts/main/AzureModded'))()
+    end
+})
+
+Tabs.Solara:AddButton({
+    Title = "Arsenal",
+    Description = "",
+    Callback = function()
+        loadstring(game:HttpGet('https://api.luarmor.net/files/v3/loaders/b95e8fecdf824e41f4a030044b055add.lua'))()
+    end
+})
+
+Tabs.Solara:AddButton({
+    Title = "Blade Ball",
+    Description = "",
+    Callback = function()
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/FFJ1/Roblox-Exploits/main/scripts/BladeBallV3.lua'))()
+    end
+})
+
+Tabs.Solara:AddButton({
+    Title = "Build A Boat",
+    Description = "",
+    Callback = function()
+        loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/juywvm/-Roblox-Projects-/main/babft"))()
+    end
+})
+
+Tabs.Solara:AddButton({
+    Title = "Blox fruits",
+    Description = "",
+    Callback = function()
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/Yatsuraa/Yuri/main/Winterhub_V2.lua'))()
+    end
+})
+
+Tabs.Solara:AddButton({
+    Title = "Doors",
+    Description = "",
+    Callback = function()
+        loadstring(game:HttpGet('https://rawscripts.net/raw/DOORS-FFJ-Hub-11365'))()
+    end
+})
+
+Tabs.Solara:AddButton({
+    Title = "Flee The Facility",
+    Description = "",
+    Callback = function()
+        loadstring(game:HttpGet('https://pastebin.com/raw/3uMsh1vn'))()
+    end
+})
+
+Tabs.Solara:AddButton({
+    Title = "The Strongest BattleGrounds",
+    Description = "",
+    Callback = function()
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/idontknowwhattonamemyself/Statue-Hub/Lua/Main'))()
+    end
+})
+
+Tabs.Solara:AddButton({
+    Title = "Counter Blox",
+    Description = "",
+    Callback = function()
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/fliskScript/jaran.vip/main/free.lua'))()
+    end
+})
+
+Tabs.Solara:AddButton({
+    Title = "Evade",
+    Description = "",
+    Callback = function()
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/zReal-King/Evade/main/Main.lua'))()
+    end
+})
+
+Tabs.Solara:AddButton({
+    Title = "Sol's RNG",
+    Description = "",
+    Callback = function()
+       loadstring(game:HttpGet('https://pastefy.app/55pnwOy3/raw'))()
+    end
+})
+
+Tabs.Solara:AddButton({
+    Title = "Phantom Forces",
+    Description = "",
+    Callback = function()
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/dementiaenjoyer/homohack/main/homohack.lua'))()
+    end
+})
+
+Tabs.Solara:AddButton({
+    Title = "Driving Empire",
+    Description = "",
+    Callback = function()
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/Marco8642/science/main/drivingempire'))()
+    end
+})
+
+Tabs.Solara:AddButton({
+    Title = "Combat Warriors",
+    Description = "",
+    Callback = function()
+        local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+        local Window = Library.CreateLib("money scripts combat", "BloodTheme")
+  
+        local Tab = Window:NewTab("Main")
+        local Tab1 = Window:NewTab("Credits")
+  
+        local Section = Tab:NewSection("Combat warriors")
+        local Section1 = Tab1:NewSection("credits")
+  
+        Section:NewButton("Big hitbox", "ButtonInfo", function()
+           local HeadSize = 20
+           local Disabled = true
+  
+           game:GetService('RunService').RenderStepped:Connect(function()
+              if Disabled then
+                 for _, player in ipairs(game:GetService('Players'):GetPlayers()) do
+                    if player ~= game:GetService('Players').LocalPlayer then
+                       pcall(function()
+                          local character = player.Character
+                          if character and character:FindFirstChild("Head") then
+                             local head = character.Head
+                             head.Size = Vector3.new(HeadSize, HeadSize, HeadSize)
+                             head.Transparency = 1
+                             head.BrickColor = BrickColor.new("Really red")
+                             head.Material = Enum.Material.Wood
+                             head.CanCollide = false
+                             head.Massless = true
+                          end
+                       end)
+                    end
+                 end
+              end
+           end)
+        end)
+  
+        Section:NewButton("Speedbypass full flash", "ButtonInfo", function()
+           function isNumber(str)
+              if tonumber(str) ~= nil or str == 'inf' then
+                 return true
+              end
+           end
+  
+           local tspeed = 0.3
+           local hb = game:GetService("RunService").Heartbeat
+           local tpwalking = true
+           local player = game:GetService("Players")
+           local lplr = player.LocalPlayer
+           local chr = lplr.Character
+           local hum = chr and chr:FindFirstChildWhichIsA("Humanoid")
+  
+           while tpwalking and hb:Wait() and chr and hum and hum.Parent do
+              if hum.MoveDirection.Magnitude > 0 then
+                 if tspeed and isNumber(tspeed) then
+                    chr:TranslateBy(hum.MoveDirection * tonumber(tspeed))
+                 else
+                    chr:TranslateBy(hum.MoveDirection)
+                 end
+              end
+           end
+        end)
+  
+        Section1:NewLabel("Huge credits to diffalex for making the script")
+        Section1:NewLabel("credits to mezzo for the script being in the hub :D")
+    end
+})
+
+Tabs.Solara:AddButton({
+    Title = "Universal Aimbot",
+    Description = "",
+    Callback = function()
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/Exunys/AirHub/main/AirHub.lua'))()
+    end
+})
+
+Tabs.Solara:AddButton({
+    Title = "Murder Mystery 2",
+    Description = "",
+    Callback = function()
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/Roman34296589/SnapSanix-GUI-MM2/main/SnapSanix%20GUI%20mm2.lua'))()
+    end
+})
+
+Tabs.Solara:AddButton({
+    Title = "Dusty Trip",
+    Description = "",
+    Callback = function()
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/artemy133563/Utilities/main/ADustyTrip'))()
+    end
+})
+
+Tabs.Solara:AddButton({
+    Title = "Slap battles",
+    Description = "",
+    Callback = function()
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/ionlyusegithubformcmods/1-Line-Scripts/main/Slap%20Battles'))()
+    end
+})
+
+Tabs.Solara:AddButton({
+    Title = "Type Soul",
+    Description = "",
+    Callback = function()
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/4xdh/SSerenadehub/main/tyy'))()
+    end
+})
+
+Tabs.Solara:AddButton({
+    Title = "Bed Wars",
+    Description = "",
+    Callback = function()
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/4xdh/SSerenadehub/main/s'))()
+    end
+})
+
+Tabs.Solara:AddButton({
+    Title = "Lumber Tycoon 2",
+    Description = "",
+    Callback = function()
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/Butterisgood/Butter/main/lt2'))()
+    end
+})
+
+Tabs.Solara:AddButton({
+    Title = "Naval Warfare",
+    Description = "",
+    Callback = function()
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/4xdhondiscord/cuh/main/suckers'))()
+    end
+})
+
+Tabs.Solara:AddButton({
+    Title = "Natural Disaster Survival",
+    Description = "",
+    Callback = function()
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/2dgeneralspam1/scripts-and-stuff/master/scripts/LoadstringUjHI6RQpz2o8'))()
+    end
+})
+
+Tabs.Solara:AddButton({
+    Title = "Prison Life",
+    Description = "",
+    Callback = function()
+        loadstring(game:HttpGet('https://pastebin.com/raw/4rkRHviN'))()
+    end
+})
+
+Tabs.Solara:AddButton({
+    Title = "KAT",
+    Description = "",
+    Callback = function()
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/zReal-King/Knife-Ability-Test/main/Gui'))()
+    end
+})
+
+
+Tabs.Solara:AddButton({
+    Title = "Chat Bypass",
+    Description = "Way better version, key copied to your clipboard.",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/1price/usercreation/main/UserCreation.lua", true))()
+		setclipboard("closet")
+    end
+})
+
+
+Tabs.Solara:AddButton({
+    Title = "Tower Of Hell",
+    Description = "",
+    Callback = function()
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/dqvh/dqvh/main/SprinHub'))()
+    end
+})
+
+Tabs.Solara:AddButton({
+    Title = "Bee Swarm Simulator",
+    Description = "",
+    Callback = function()
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/BaconBossScript/BeeSwarmSim/main/BeeSwarmSim'))()
+    end
+})
+
+
+Tabs.Solara:AddButton({
+    Title = "A Universal Time",
+    Description = "",
+    Callback = function()
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/ewyzu/ewyzu-mainHHH/main/ewyzu-AUT'))()
+    end
+})
+
+
+Tabs.Solara:AddButton({
+    Title = "Murders VS  Sheriffs Duels",
+    Description = "MAY DO SOME FPS DROPS",
+    Callback = function()
+loadstring(game:HttpGet('https://raw.githubusercontent.com/4xdhondiscord/jailb/main/idklole'))()
+    end
+})
+
+
+Tabs.Solara:AddButton({
+    Title = "Universal ESP",
+    Description = "",
+    Callback = function()
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/4xdhondiscord/jailb/main/Universal%20ESP'))()
+    end
+})
+
+
+Tabs.Solara:AddButton({
+    Title = "Fling People And Things",
+    Description = "",
+    Callback = function()
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/BlizTBr/scripts/main/FTAP.lua'))()
+    end
+})
+
+
+Tabs.Solara:AddButton({
+    Title = "Zombie Attack",
+    Description = "",
+    Callback = function()
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/RTrade/Voidz/main/Games.lua'))()
+    end
+})
+
+
+Tabs.Solara:AddButton({
+    Title = "Your Bizarre Adventure",
+    Description = "Auto Farm ONLY",
+    Callback = function()
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/NukeVsCity/Scripts2024/main/ybaredguiforpc'))()
+    end
+})
+
+
+Tabs.Solara:AddButton({
+    Title = "Survive The Killer!",
+    Description = "",
+    Callback = function()
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/Kiroftt/Survive-The-Killer/main/Simple'))()
+    end
+})
+
+
+Tabs.Solara:AddButton({
+    Title = "Cant Say the Word!",
+    Description = "",
+    Callback = function()
+        loadstring(game:HttpGet('https://pastebin.com/raw/W9KKeaMp'))()
+    end
+})
+
+
+Tabs.Solara:AddButton({
+    Title = "Trident Survival",
+    Description = "",
+    Callback = function()
+        loadstring(game:HttpGet('https://efial.wtf/Scripts/Trident%20(NEW).lua'))()
+    end
+})
+
+
+Tabs.Solara:AddButton({
+    Title = "Bad business ",
+    Description = "",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/dementiaenjoyer/homohack/main/loader.lua"))()
+    end
+})
+
+
+Tabs.Solara:AddButton({
+    Title = "3008",
+    Description = "",
+    Callback = function()
+        loadstring(game:HttpGet'https://raw.githubusercontent.com/RunDTM/scripts/main/3008.lua')()
+    end
+})
+
+Tabs.Solara:AddButton({
+    Title = "Big Paintball!",
+    Description = "",
+    Callback = function()
+        loadstring(game:HttpGet'https://raw.githubusercontent.com/4xdhondiscord/jailb/main/bigbiggy')()
+    end
+})
+
+Tabs.Solara:AddButton({
+    Title = "GPO",
+    Description = "it uses keyrblx, its different key for each person",
+    Callback = function()
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/Tilitestaccount/Idk/main/StarHubReborn'))()
+    end
+})
+
+Tabs.Solara:AddButton({
+    Title = "Frontlines",
+    Description = "skidded but why not put it",
+    Callback = function()
+        loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/5bebf0b1e173f4baff73449722204837.lua"))()
+    end
+})
+
+Tabs.Solara:AddButton({
+    Title = "Gym League",
+    Description = "",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Kenniel123/Gym-League/main/Gym%20League%20Script"))()
+    end
+})
+
+Tabs.Solara:AddButton({
+    Title = "Legends Of Speed",
+    Description = "",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Vynixius/main/Legends%20Of%20Speed/Script.lua"))()
+    end
+})
+
+Tabs.Solara:AddButton({
+    Title = "Roghoul",
+    Description = "",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Kaizenofficiall/ZenHub/main/Roghoul", true))()
+    end
+})
+
+Tabs.Solara:AddButton({
+    Title = "Jujutsu Shenanigans",
+    Description = "",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/LOLking123456/Jujutsu/main/Shenanigans"))()
+    end
+})
+
+Tabs.Solara:AddButton({
+    Title = "The Floor Is LAVA",
+    Description = "",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/RobloxHackingProject/CHHub/main/CHHub.lua"))()
+    end
+})
+
+Tabs.Solara:AddButton({
+    Title = "Pls Donate",
+    Description = "",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/CF-Trail/tzechco-PlsDonateAutofarmBackup/main/old.lua"))()
+    end
+})
+
+Tabs.Solara:AddButton({
+    Title = "TPS: Street Soccer",
+    Description = "Key : Ad2du-lGaS1-bV3e-Er8KmQ9w 'it'll be copied to your clipboard'",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Edaruph/My-Scripts/main/TPS/Ethernality.lua"))()
+        setclipboard("Ad2du-lGaS1-bV3e-Er8KmQ9w")
+    end
+})
+
+Tabs.Solara:AddButton({
+  Title = "Pet Simulator 99",
+  Description = "",
+  Callback = function()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/PyroXHUB/PyroX/main/PS99'))()
+  end
+})
+
+Tabs.Solara:AddButton({
+  Title = "Project Slayer",
+  Description = "Takes A bit long to load",
+  Callback = function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/NukeVsCity/Scripts2024/main/newprojslayrs"))()
+  end
+})
+
+Tabs.Solara:AddButton({
+  Title = "Ninja Legends",
+  Description = "",
+  Callback = function()
+    loadstring(game:HttpGet('https://pastebin.com/raw/8Ts5pEiA'))()
+  end
+})
+
+Tabs.Solara:AddButton({
+  Title = "War Machine",
+  Description = "",
+  Callback = function()
+    loadstring(game:HttpGet("https://pastebin.com/raw/NTQ3Tszv"))()
+  end
+})
+
+Tabs.Solara:AddButton({
+  Title = "Hoopz",
+  Description = "Could take long to load",
+  Callback = function()
+    loadstring(game:HttpGet(('https://raw.githubusercontent.com/RTrade/Voidz/main/Games.lua'),true))()
+  end
+})
+
+Tabs.Solara:AddButton({
+  Title = "Brookhaven",
+  Description = "",
+  Callback = function()
+    loadstring(game:HttpGet("https://gist.githubusercontent.com/sXPiterXs1111/9dc6d9529c1e983a0fa2e3b687aaf0a7/raw/183fb20a34a37cd66597bf69251af54f962dbe3f/sanderhub.lua"))()
+  end
+})
+
+Tabs.Solara:AddButton({
+  Title = "Eat the world",
+  Description = "key : wackhub 'it'll be copied to your clipboard'",
+  Callback = function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Janorax/UniversalLoader/main/Main"))()
+    setclipboard("wackhub")
+  end
+})
+
+Tabs.Solara:AddButton({
+    Title = "South Bronx",
+    Description = "sucks but i guess it kinda works lol",
+    Callback = function()
+        loadstring(game:HttpGet("https://scriptblox.com/raw/VC-SERVERS-South-Bronx:-The-Trenches-Bronx-Bypass-7755"))()
+    end
+  })
+
+Tabs.Solara:AddButton({
+    Title = "Attack on Titan Revolution",
+    Description = "Key gonna be pasted to your clipboard",
+    Callback = function()
+        loadstring(game:HttpGet(('https://pastefy.app/jIAPA2zS/raw'),true))()
+        setclipboard("HF4c9NwUKRDmhJzP37YBEW")
+    end
+})
+
+Tabs.Solara:AddButton({
+    Title = "RIVALS",
+    Description = "make smoothness to the max for it work better",
+    Callback = function()
+		local scriptURL = 'https://raw.githubusercontent.com/Sheeshablee73/Scriptss/main/Rivals.lua'
+		local response = game:HttpGet(scriptURL)
+		local executeScript = loadstring(response)
+		executeScript()
+    end
+})
+
+Tabs.Solara:AddButton({
+    Title = "Demon Fall",
+    Description = "",
+    Callback = function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/leenZzZzZ/ScriptHUB/main/Script%20Hub",true))();
+    end
+})
+
+
+SaveManager:SetLibrary(Fluent)
+InterfaceManager:SetLibrary(Fluent)
+SaveManager:IgnoreThemeSettings()
+SaveManager:SetIgnoreIndexes({})
+InterfaceManager:SetFolder("FluentScriptHub")
+SaveManager:SetFolder("FluentScriptHub/specific-game")
+InterfaceManager:BuildInterfaceSection(Tabs.Settings)
+SaveManager:BuildConfigSection(Tabs.Settings)
+Window:SelectTab(1)
+SaveManager:LoadAutoloadConfig()
