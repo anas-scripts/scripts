@@ -806,6 +806,22 @@ local funAnimations = {
 local swingAnim
 local auraConnection
 local targetInfo = Instance.new("TextLabel",ScreenGui)
+NoClickDela = Combat.NewButton({
+		Name = 'NoClickDelay',
+		Function = function(callback)
+			if callback then
+				old = bedwars.SwordController.isClickingTooFast
+				bedwars.SwordController.isClickingTooFast = function(self)
+					self.lastSwing = tick()
+					return false
+				end
+			else
+				bedwars.SwordController.isClickingTooFast = old
+			end
+		end,
+		Tooltip = 'Remove the CPS cap'
+	})
+end)
 Killaura = Combat.NewButton({
 	Name = "Killaura",
 	Function = function(callback)
